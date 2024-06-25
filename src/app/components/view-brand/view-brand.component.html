@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Marcas</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #007bff;
+            padding: 10px 0;
+        }
+
+        .navbar .nav-link {
+            color: #fff;
+            margin-right: 10px;
+        }
+
+        .navbar .nav-link.active {
+            font-weight: bold;
+        }
+
+        /* Container */
+        .container {
+            margin: 50px auto;  
+            max-width: 800px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+            vertical-align: middle;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 8px 16px;
+            margin-top: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: 1px solid #007bff;
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border: 1px solid #dc3545;
+            color: #fff;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+            border-color: #c82333;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            table {
+                font-size: 14px;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-primary">
+        <div class="navbar-nav">
+            <a class="nav-link active text-white" aria-current="page" routerLink="/">Inicio</a>
+            <a class="nav-link text-white" routerLink="/add">Añadir Componente</a>
+            <a class="nav-link text-white" routerLink="/brands">Marcas</a>
+            <a class="nav-link text-white" routerLink="/addbrand">Añadir Marcas</a>
+        </div>
+    </nav>
+
+    <!-- Container -->
+    <div class="container">
+        <h1>Lista de Marcas</h1>
+        <div class="d-flex justify-content-end mb-3">
+            <button class="btn btn-primary" routerLink="/addbrand">Nueva Marca</button>
+        </div>
+
+        <!-- Table -->
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Tienda</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let brand of brands">
+                    <td>{{brand.id}}</td>
+                    <td>{{brand.name}}</td>
+                    <td>{{brand.shop}}</td>
+                    <td>
+                        <button class="btn btn-primary" routerLink="/updatebrand/{{brand.id}}">Editar</button>
+                        <button class="btn btn-danger mx-2" (click)="deletebrand(brand.id)">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
